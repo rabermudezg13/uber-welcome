@@ -1,172 +1,293 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome Aboard</title>
-  <style>
-    :root {
-      --gold: #d4af37;
-      --green: #1DB954;
-      --text: #ffffff;
-      --muted: #d8d8d8;
-      --glass: rgba(255,255,255,0.07);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, rgba(212,175,55,.20), transparent 38%), linear-gradient(135deg, #000, #121212 50%, #030303);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 28px;
-    }
-    .card {
-      width: min(1050px, 100%);
-      border: 1px solid rgba(212,175,55,.5);
-      border-radius: 30px;
-      padding: 40px 36px;
-      background: var(--glass);
-      box-shadow: 0 22px 70px rgba(0,0,0,.65);
-    }
-    .badge {
-      display: inline-block;
-      color: #111;
-      background: var(--gold);
-      padding: 10px 22px;
-      border-radius: 999px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    h1 {
-      color: var(--gold);
-      font-size: clamp(44px, 7vw, 82px);
-      margin: 10px 0 14px;
-      line-height: 1.05;
-    }
-    .message {
-      font-size: clamp(24px, 3.1vw, 38px);
-      line-height: 1.36;
-      margin: 0 auto 26px;
-      max-width: 900px;
-    }
-    .amenities {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin: 25px auto;
-      max-width: 900px;
-    }
-    .amenity {
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 18px;
-      padding: 18px 10px;
-      background: rgba(0,0,0,.25);
-      font-size: clamp(18px, 2.4vw, 27px);
-      font-weight: 700;
-    }
-    .music-row {
-      display: grid;
-      grid-template-columns: 1fr 230px;
-      gap: 24px;
-      align-items: center;
-      margin-top: 26px;
-    }
-    .music-box {
-      border: 1px solid rgba(29,185,84,.5);
-      background: rgba(29,185,84,.10);
-      border-radius: 22px;
-      padding: 22px;
-    }
-    a.button {
-      display: inline-block;
-      background: var(--green);
-      color: white;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: clamp(23px, 3vw, 36px);
-      padding: 18px 30px;
-      border-radius: 999px;
-      margin-top: 12px;
-    }
-    .qr {
-      width: 100%;
-      border-radius: 18px;
-      background: white;
-      padding: 10px;
-    }
-    .footer {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 24px);
-    }
-    @media (max-width: 760px) {
-      .amenities { grid-template-columns: 1fr; }
-      .music-row { grid-template-columns: 1fr; }
-      .qr { max-width: 260px; margin: 0 auto; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Aboard</title>
+
+<style>
+:root{
+  --gold:#d4af37;
+  --green:#1DB954;
+  --text:#ffffff;
+  --glass:rgba(255,255,255,.07);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  background:
+    radial-gradient(circle at top,
+      rgba(212,175,55,.20),
+      transparent 40%),
+    linear-gradient(135deg,#000,#111,#000);
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.card{
+  width:min(1100px,100%);
+  background:var(--glass);
+  border:1px solid rgba(212,175,55,.5);
+  border-radius:30px;
+  padding:40px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+.badge{
+  display:inline-block;
+  background:var(--gold);
+  color:#111;
+  padding:10px 22px;
+  border-radius:999px;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+h1{
+  color:var(--gold);
+  font-size:clamp(48px,7vw,90px);
+  margin-bottom:15px;
+}
+
+.message{
+  font-size:clamp(22px,3vw,36px);
+  line-height:1.4;
+  max-width:900px;
+  margin:auto;
+}
+
+.amenities{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.amenity{
+  padding:20px;
+  border-radius:18px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:24px;
+  font-weight:700;
+}
+
+.music{
+  margin-top:35px;
+  display:grid;
+  grid-template-columns:1fr 250px;
+  gap:25px;
+  align-items:center;
+}
+
+.music-box{
+  border:1px solid rgba(29,185,84,.4);
+  background:rgba(29,185,84,.08);
+  padding:25px;
+  border-radius:25px;
+}
+
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:18px 30px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:900;
+  font-size:28px;
+}
+
+.spotify{
+  background:#1DB954;
+  color:white;
+}
+
+.spotify-app{
+  background:#333;
+  color:white;
+}
+
+.qr{
+  width:100%;
+  background:white;
+  border-radius:18px;
+  padding:10px;
+}
+
+.footer{
+  margin-top:25px;
+  color:#ddd;
+  font-size:22px;
+}
+
+@media(max-width:768px){
+
+  .amenities{
+    grid-template-columns:1fr;
+  }
+
+  .music{
+    grid-template-columns:1fr;
+  }
+
+  .qr{
+    max-width:250px;
+    margin:auto;
+  }
+}
+</style>
 </head>
+
 <body>
-  <main class="card">
-    <div class="badge" id="timeGreeting">Welcome</div>
-    <h1 id="welcomeTitle">Welcome aboard!</h1>
-    <p class="message" id="mainMessage">
-      Thanks for joining the ride with me. I’m Rodrigo. Please feel free to enjoy the music, cold drinks, and snacks.
-    </p>
-    <section class="amenities">
-      <div class="amenity">🥤 Cold drinks</div>
-      <div class="amenity">🍪 Snacks</div>
-      <div class="amenity">🎵 Spotify Jam</div>
-    </section>
-    <section class="music-row">
-      <div class="music-box">
-        <div class="message" style="margin-bottom:8px;">Choose your favorite music</div>
-        <a class="button" id="spotifyLink" href="#" target="_blank" rel="noopener">JOIN SPOTIFY JAM</a>
+
+<div class="card">
+
+  <div id="timeGreeting" class="badge">
+    Welcome
+  </div>
+
+  <h1 id="welcomeTitle">
+    Welcome aboard!
+  </h1>
+
+  <div class="message" id="mainMessage">
+    Thanks for joining the ride with me. I'm Rodrigo.
+  </div>
+
+  <div class="amenities">
+    <div class="amenity">🥤 Cold Drinks</div>
+    <div class="amenity">🍪 Complimentary Snacks</div>
+    <div class="amenity">🔌 Charging Cables Available</div>
+  </div>
+
+  <div class="music">
+
+    <div class="music-box">
+
+      <div class="message" style="font-size:28px;">
+        Choose your favorite music
       </div>
-      <img class="qr" src="assets/spotify-jam-qr.jpg" alt="Spotify Jam QR Code" />
-    </section>
-    <div class="footer">Have a wonderful ride.</div>
-  </main>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-    import { firebaseConfig, spotifyJamLink, driverName } from "./firebase-config.js";
+      <a
+        id="spotifyLink"
+        class="button spotify"
+        target="_blank">
+        🎵 Join Spotify Jam
+      </a>
 
-    document.getElementById("spotifyLink").href = spotifyJamLink;
+      <br>
 
-    function greetingByHour() {
-      const hour = new Date().getHours();
-      if (hour < 12) return "Good morning";
-      if (hour < 18) return "Good afternoon";
-      return "Good evening";
-    }
+      <a
+        href="https://open.spotify.com"
+        class="button spotify-app"
+        target="_blank">
+        🎧 Open Spotify App
+      </a>
 
-    function render(name = "") {
-      const cleanName = String(name || "").trim();
-      const greeting = greetingByHour();
-      document.getElementById("timeGreeting").textContent = greeting;
-      document.getElementById("welcomeTitle").textContent = cleanName
-        ? `Hi, ${cleanName}!`
-        : "Welcome aboard!";
-      document.getElementById("mainMessage").textContent =
-        `Welcome aboard. Thanks for joining the ride with me. I’m ${driverName}. Please feel free to enjoy the Spotify Jam, choose your favorite music, grab a cold drink from the cooler, and enjoy the snacks.`;
-    }
+    </div>
 
-    render();
+    <img
+      src="assets/spotify-jam-qr.jpg"
+      class="qr"
+      alt="Spotify QR">
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    onValue(ref(db, "ride/passengerName"), (snapshot) => {
-      render(snapshot.val());
-    });
-  </script>
+  </div>
+
+  <div class="footer">
+    Have a wonderful ride.
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import {
+  firebaseConfig,
+  SPOTIFY_JAM_LINK
+}
+from "./firebase-config.js";
+
+document.getElementById("spotifyLink").href =
+  SPOTIFY_JAM_LINK;
+
+function getGreeting(){
+
+  const hour = new Date().getHours();
+
+  if(hour < 12) return "Good Morning";
+
+  if(hour < 18) return "Good Afternoon";
+
+  return "Good Evening";
+}
+
+function render(name){
+
+  document.getElementById("timeGreeting")
+    .textContent = getGreeting();
+
+  if(name){
+
+    document.getElementById("welcomeTitle")
+      .textContent =
+      `Hi, ${name}!`;
+
+  }else{
+
+    document.getElementById("welcomeTitle")
+      .textContent =
+      "Welcome aboard!";
+  }
+
+  document.getElementById("mainMessage")
+    .textContent =
+    "Thanks for joining the ride with me. I'm Rodrigo. Please feel free to enjoy the Spotify Jam, choose your favorite music, grab a cold drink from the cooler, and enjoy the snacks.";
+}
+
+render("");
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getDatabase(app);
+
+const passengerRef =
+  ref(db,"ride/passengerName");
+
+onValue(passengerRef,(snapshot)=>{
+
+  const name =
+    snapshot.val();
+
+  render(name);
+});
+
+</script>
+
 </body>
 </html>
+```
