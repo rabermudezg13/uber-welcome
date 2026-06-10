@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Aboard</title>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --green: #1DB954;
+      --text: #ffffff;
+      --muted: #d8d8d8;
+      --glass: rgba(255,255,255,0.07);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(212,175,55,.20), transparent 38%), linear-gradient(135deg, #000, #121212 50%, #030303);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+    }
+    .card {
+      width: min(1050px, 100%);
+      border: 1px solid rgba(212,175,55,.5);
+      border-radius: 30px;
+      padding: 40px 36px;
+      background: var(--glass);
+      box-shadow: 0 22px 70px rgba(0,0,0,.65);
+    }
+    .badge {
+      display: inline-block;
+      color: #111;
+      background: var(--gold);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      color: var(--gold);
+      font-size: clamp(44px, 7vw, 82px);
+      margin: 10px 0 14px;
+      line-height: 1.05;
+    }
+    .message {
+      font-size: clamp(24px, 3.1vw, 38px);
+      line-height: 1.36;
+      margin: 0 auto 26px;
+      max-width: 900px;
+    }
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 25px auto;
+      max-width: 900px;
+    }
+    .amenity {
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding: 18px 10px;
+      background: rgba(0,0,0,.25);
+      font-size: clamp(18px, 2.4vw, 27px);
+      font-weight: 700;
+    }
+    .music-row {
+      display: grid;
+      grid-template-columns: 1fr 230px;
+      gap: 24px;
+      align-items: center;
+      margin-top: 26px;
+    }
+    .music-box {
+      border: 1px solid rgba(29,185,84,.5);
+      background: rgba(29,185,84,.10);
+      border-radius: 22px;
+      padding: 22px;
+    }
+    a.button {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: clamp(23px, 3vw, 36px);
+      padding: 18px 30px;
+      border-radius: 999px;
+      margin-top: 12px;
+    }
+    .qr {
+      width: 100%;
+      border-radius: 18px;
+      background: white;
+      padding: 10px;
+    }
+    .footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+    }
+    @media (max-width: 760px) {
+      .amenities { grid-template-columns: 1fr; }
+      .music-row { grid-template-columns: 1fr; }
+      .qr { max-width: 260px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge" id="timeGreeting">Welcome</div>
+    <h1 id="welcomeTitle">Welcome aboard!</h1>
+    <p class="message" id="mainMessage">
+      Thanks for joining the ride with me. I’m Rodrigo. Please feel free to enjoy the music, cold drinks, and snacks.
+    </p>
+    <section class="amenities">
+      <div class="amenity">🥤 Cold drinks</div>
+      <div class="amenity">🍪 Snacks</div>
+      <div class="amenity">🎵 Spotify Jam</div>
+    </section>
+    <section class="music-row">
+      <div class="music-box">
+        <div class="message" style="margin-bottom:8px;">Choose your favorite music</div>
+        <a class="button" id="spotifyLink" href="#" target="_blank" rel="noopener">JOIN SPOTIFY JAM</a>
+      </div>
+      <img class="qr" src="assets/spotify-jam-qr.jpg" alt="Spotify Jam QR Code" />
+    </section>
+    <div class="footer">Have a wonderful ride.</div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { firebaseConfig, spotifyJamLink, driverName } from "./firebase-config.js";
+
+    document.getElementById("spotifyLink").href = spotifyJamLink;
+
+    function greetingByHour() {
+      const hour = new Date().getHours();
+      if (hour < 12) return "Good morning";
+      if (hour < 18) return "Good afternoon";
+      return "Good evening";
+    }
+
+    function render(name = "") {
+      const cleanName = String(name || "").trim();
+      const greeting = greetingByHour();
+      document.getElementById("timeGreeting").textContent = greeting;
+      document.getElementById("welcomeTitle").textContent = cleanName
+        ? `Hi, ${cleanName}!`
+        : "Welcome aboard!";
+      document.getElementById("mainMessage").textContent =
+        `Welcome aboard. Thanks for joining the ride with me. I’m ${driverName}. Please feel free to enjoy the Spotify Jam, choose your favorite music, grab a cold drink from the cooler, and enjoy the snacks.`;
+    }
+
+    render();
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    onValue(ref(db, "ride/passengerName"), (snapshot) => {
+      render(snapshot.val());
+    });
+  </script>
+</body>
+</html>
