@@ -31,5 +31,28 @@ const miamiTips=[
 {kicker:"ENJOY MIAMI",text:"Great beaches, great food, great energy — make the most of your time in the Magic City. ☀️"}
 ];let tipIndex=0;function showTip(){const text=$("footerText"),kicker=$("footerKicker");if(!text||!kicker)return;const tip=miamiTips[tipIndex];kicker.textContent=tip.kicker;text.textContent=tip.text}showTip();setInterval(()=>{const text=$("footerText");if(!text)return;text.classList.add("swap");setTimeout(()=>{tipIndex=(tipIndex+1)%miamiTips.length;showTip();text.classList.remove("swap")},280)},6000);
 </script>
-<script type="module">import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";import{getDatabase,ref,onValue}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";import{firebaseConfig}from"./firebase-config.js";try{const app=initializeApp(firebaseConfig),db=getDatabase(app);onValue(ref(db,"ride"),s=>{const v=s.val()||{};window.renderRide(v)},err=>console.error("Ride sync error",err));onValue(ref(db,"screen"),s=>{window.setScreen(s.val()||"welcome")},err=>console.error("Screen sync error",err));}catch(err){console.error("Realtime sync unavailable",err)}</script>
+<script>
+let lastRideUpdatedAt=null;
+async function syncRide(){
+  try{
+    const r=await fetch("https://uber-welcome-default-rtdb.firebaseio.com/ride.json?ts="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error("Firebase HTTP "+r.status);
+    const v=await r.json()||{};
+    const stamp=String(v.updatedAt??"")+"|"+String(v.passengerName??"")+"|"+String(v.language??"")+"|"+String(v.estimatedMinutes??"");
+    if(stamp!==lastRideUpdatedAt){
+      lastRideUpdatedAt=stamp;
+      window.renderRide(v);
+    }
+  }catch(err){console.error("Ride sync error",err)}
+}
+async function syncScreen(){
+  try{
+    const r=await fetch("https://uber-welcome-default-rtdb.firebaseio.com/screen.json?ts="+Date.now(),{cache:"no-store"});
+    if(!r.ok)return;
+    const s=await r.json();
+    if(s==="explore"||s==="welcome")window.setScreen(s);
+  }catch(err){console.error("Screen sync error",err)}
+}
+syncRide();syncScreen();setInterval(syncRide,1500);setInterval(syncScreen,2000);
+</script>
 </body></html>
