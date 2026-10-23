@@ -88,3 +88,9 @@ Production URLs:
 - Guide content is **editorial/user-provided**, not a verified live events/weather feed. Time-sensitive details must be checked before publication/use; the page displays a weather/events change disclaimer. Do not assume weather or event claims are confirmed.
 - The guide is embedded in `index.html` as `#miamiGuide`, opened from `#openMiamiGuide`, closed via `#closeMiamiGuide`, Escape, or driver switching to Welcome. Preserve existing Explore cards, Jam QR and ETA.
 - The date is explicitly Oct 22–28, 2026. Remove, update or hide outdated content after the week; a future enhancement is a driver-editable weekly content feed rather than hard-coded text.
+
+## Auto-rotating Miami recommendations (October 2026)
+- Explore Miami now has a visible `#miamiRotation` carousel with 19 short slides derived from the weekly guide: welcome, events, restaurants, sights, family, weather, and Ludy Hair Studio.
+- Automatically advances every **11 seconds** while Explore is visible, the full guide is closed, and the browser tab is active. Pauses automatically when the full guide opens or driver switches to Welcome; resumes when Explore returns.
+- Passenger can tap previous, next, pause/resume; the full weekly guide button remains available. All existing Jam QR, ETA, advertisements and Halloween UI are preserved.
+- Current copy is hard-coded and date-specific (Oct 22–28, 2026); update it after the week or implement a Firebase-backed admin editor. Event/weather details were provided and confirmed by the owner, not independently verified by the developer.
