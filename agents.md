@@ -81,3 +81,10 @@ Production URLs:
 - Explain what is actually merged versus merely proposed or pending review.
 - Never claim an untested native app, GPS ETA or Spotify playback integration already exists.
 - Prioritize driver safety and low-touch operation while driving.
+
+## Weekly passenger information guide — October 22–28, 2026
+- Passenger Explore Miami now has a **Miami This Week · Events & Insider Tips** button that opens a full-screen, scrollable guide and a **Back to Explore** control.
+- The guide contains the owner's supplied welcome copy, weekly events (HEAT, Hurricanes, Chayanne, South Beach Seafood Festival, Zoo Boo, Inter Miami, outdoor film, Halloween), restaurants and nightlife, first-time tips, budget date ideas, children's activities, weather advisory, and Ludy Hair Studio promotion.
+- Guide content is **editorial/user-provided**, not a verified live events/weather feed. Time-sensitive details must be checked before publication/use; the page displays a weather/events change disclaimer. Do not assume weather or event claims are confirmed.
+- The guide is embedded in `index.html` as `#miamiGuide`, opened from `#openMiamiGuide`, closed via `#closeMiamiGuide`, Escape, or driver switching to Welcome. Preserve existing Explore cards, Jam QR and ETA.
+- The date is explicitly Oct 22–28, 2026. Remove, update or hide outdated content after the week; a future enhancement is a driver-editable weekly content feed rather than hard-coded text.
