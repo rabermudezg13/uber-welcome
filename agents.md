@@ -94,3 +94,11 @@ Production URLs:
 - Automatically advances every **11 seconds** while Explore is visible, the full guide is closed, and the browser tab is active. Pauses automatically when the full guide opens or driver switches to Welcome; resumes when Explore returns.
 - Passenger can tap previous, next, pause/resume; the full weekly guide button remains available. All existing Jam QR, ETA, advertisements and Halloween UI are preserved.
 - Current copy is hard-coded and date-specific (Oct 22–28, 2026); update it after the week or implement a Firebase-backed admin editor. Event/weather details were provided and confirmed by the owner, not independently verified by the developer.
+
+## Thanksgiving welcome — November 2026
+- Seasonal driver toggle in `admin.html` is now labeled **🍁 Thanksgiving Welcome Mode** and retains the existing Firebase `theme/halloween` path for backward compatibility (no database migration).
+- When enabled, `index.html` displays the owner's full English **Welcome Aboard – A Thanksgiving Message** in a scrollable autumn-themed card, hides the old Halloween greeting/message and Halloween scene, and retains ETA, Jam QR, Explore, and passenger amenities. When disabled, the standard welcome is shown.
+- Legacy CSS class `halloween` and Firebase key are internal compatibility names only. Future refactor can rename them with a safe migration.
+- The long message may require scrolling on iPad; test readability and layout before production.
+
+- Thanksgiving message is localized in en, es, pt, de, fr, it, ru, ar. `renderThanksgiving(lang)` updates heading and paragraphs whenever the Firebase ride language changes; Arabic sets RTL. English is the fallback. No external translation API or cost.
