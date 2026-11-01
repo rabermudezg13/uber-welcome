@@ -100,3 +100,5 @@ Production URLs:
 - When enabled, `index.html` displays the owner's full English **Welcome Aboard – A Thanksgiving Message** in a scrollable autumn-themed card, hides the old Halloween greeting/message and Halloween scene, and retains ETA, Jam QR, Explore, and passenger amenities. When disabled, the standard welcome is shown.
 - Legacy CSS class `halloween` and Firebase key are internal compatibility names only. Future refactor can rename them with a safe migration.
 - The long message may require scrolling on iPad; test readability and layout before production.
+
+- Thanksgiving message is localized in en, es, pt, de, fr, it, ru, ar. `renderThanksgiving(lang)` updates heading and paragraphs whenever the Firebase ride language changes; Arabic sets RTL. English is the fallback. No external translation API or cost.
