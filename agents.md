@@ -102,3 +102,5 @@ Production URLs:
 - The long message may require scrolling on iPad; test readability and layout before production.
 
 - Thanksgiving message is localized in en, es, pt, de, fr, it, ru, ar. `renderThanksgiving(lang)` updates heading and paragraphs whenever the Firebase ride language changes; Arabic sets RTL. English is the fallback. No external translation API or cost.
+
+- November update: shortened the Thanksgiving welcome to a warm five-paragraph message; removed 'A Thanksgiving Message' from the title, which now reads '🍁 Welcome Aboard 🍁' in English and corresponding localized greetings in all eight languages. Existing Firebase language switching remains intact.
