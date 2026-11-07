@@ -104,3 +104,9 @@ Production URLs:
 - Thanksgiving message is localized in en, es, pt, de, fr, it, ru, ar. `renderThanksgiving(lang)` updates heading and paragraphs whenever the Firebase ride language changes; Arabic sets RTL. English is the fallback. No external translation API or cost.
 
 - November update: shortened the Thanksgiving welcome to a warm five-paragraph message; removed 'A Thanksgiving Message' from the title, which now reads '🍁 Welcome Aboard 🍁' in English and corresponding localized greetings in all eight languages. Existing Firebase language switching remains intact.
+
+## November passenger greeting correction
+- Admin title selection immediately updates only `ride/honorific` and `updatedAt`; sending a ride still includes the selected title.
+- Welcome and Explore use the localized title plus passenger name, including legacy master/mistress/miss values. Spanish now uses Sr./Sra.; neutral adds no title.
+- Seasonal card has only Welcome Aboard and three warm sentences in all eight languages; no Thanksgiving Message heading.
+- Reload both published web pages after deployment to replace older open documents.
