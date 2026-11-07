@@ -110,3 +110,9 @@ Production URLs:
 - Welcome and Explore use the localized title plus passenger name, including legacy master/mistress/miss values. Spanish now uses Sr./Sra.; neutral adds no title.
 - Seasonal card has only Welcome Aboard and three warm sentences in all eight languages; no Thanksgiving Message heading.
 - Reload both published web pages after deployment to replace older open documents.
+
+## November 2026 personal recommendations
+- November Explore guide and 7-slide rotation replace October event/weather copy with owner-supplied picks: Hosteria Romana (429 Española Way), Macondo (Doral/Downtown), Tacos Taco Lovers (Kendall/Virginia Gardens/Southwest Miami). No current opening hours or exact taco addresses were inferred.
+- Owner-reported frequent destinations: MILA, Faena, E11EVEN, EAST Miami, Brickell City Centre and Coconut Grove. These are personal observations, not verified rankings.
+- Ludy promotion appears as its existing Explore QR card, a guide card with Instagram QR/link, and a rotation slide.
+- Excellent-day phrase becomes an excellent-night phrase from 18:00 to 05:59 using iPad local time; greeting refreshes every minute even without a Firebase change.
